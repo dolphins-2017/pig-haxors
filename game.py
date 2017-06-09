@@ -1,1 +1,2 @@
-fdsafdsafdsafdsafdsa
+class Game:
+	pass
