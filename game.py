@@ -8,6 +8,7 @@ p1totalscore = 0
 p2totalscore = 0
 
 def game(goalScore, player, turnscore, p1totalscore, p2totalscore):
+	print (goalScore, player, turnscore, p1totalscore, p2totalscore)
 	if player == "player1":
 		if turnscore == "SNAKE EYES":
 			p1totalScore = 0
@@ -21,7 +22,7 @@ def game(goalScore, player, turnscore, p1totalscore, p2totalscore):
 			return (game(goalScore, player, turnscore, p1totalscore, p2totalscore))
 		elif turnscore == 0:
 			choice = input("It's player 1's turn. Please type 'r' to roll or 'b' to bank: " )
-			return turn(player, choice, turnscore)
+			return turn(player, choice, turnscore, p1totalscore, p2totalscore)
 		else:
 			p1totalScore += turnscore
 			if p1totalScore >= goalScore:
@@ -43,7 +44,7 @@ def game(goalScore, player, turnscore, p1totalscore, p2totalscore):
 			return (game(goalScore, player, turnscore, p1totalscore, p2totalscore))
 		elif turnscore == 0:
 			choice = input("It's player 2's turn. Please type 'r' to roll or 'b' to bank: ")
-			return turn(player, choice, turnscore)
+			return turn(player, choice, turnscore, p1totalscore, p2totalscore)
 		else:
 			p2totalScore += turnscore
 			if p2totalScore >= goalScore:
@@ -53,7 +54,8 @@ def game(goalScore, player, turnscore, p1totalscore, p2totalscore):
 				player = "player1"
 				return (game(goalScore, player, turnscore, p1totalscore, p2totalscore))
 
-def turn(player, choice, turnscore):
+def turn(player, choice, turnscore, p1totalscore, p2totalscore):
+	print (player, choice, turnscore)
 	dice = []
 	dicesum = 0
 	if choice  == "r":
@@ -77,14 +79,14 @@ def turn(player, choice, turnscore):
 			dicesum = sum(dice)
 			print ("Since you rolled 2 of the same number, " + str(dicesum) + " will be added to your score for this turn and you have to roll again.")
 			turnscore += dicesum
-			return (turn (player, (input("Please type r to roll again: ")), turnscore))
+			return (turn (player, (input("Please type r to roll again: ")), turnscore, p1totalscore, p2totalscore))
 
 		else:
 			print("You rolled: ", dice)
 			dicesum = sum(dice)
 			turnscore += dicesum
 			print ("The score for your turn is now " + str(turnscore))
-			return (turn (player, (input("Type r to roll again or b to bank: ")), turnscore))
+			return (turn (player, (input("Type r to roll again or b to bank: ")), turnscore, p1totalscore, p2totalsccore))
 	else:
 		turnscore += dicesum
 		return (game(goalScore, player, turnscore,p1totalscore, p2totalscore))
