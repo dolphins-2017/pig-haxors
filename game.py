@@ -2,10 +2,10 @@ from random import randint
 
 
 goalScore = input("Please enter the score you would like to count up to: ")
-player = player1
+player = "player1"
 
 def game(goalScore, player):
-	if player == player1:
+	if player == "player1":
 		turnscore = turn(input("It's player 1's turn. Please type 'r' to roll or 'b' to bank: "))
 		p1totalScore += turnscore
 		if p1totalScore >= goalScore:
@@ -27,7 +27,8 @@ def turn(choice):
 		turnscore = 0
 		dice = []
 		dicesum = 0
-		if choice  == "r":
+		prompt = input("r or b")
+		if prompt  == "r":
 			notEnd = True
 			while notEnd == True:
 				randNum1 = randint(1,6)
@@ -53,10 +54,9 @@ def turn(choice):
 					turnscore += dicesum
 					notEnd = False
 		print("The turn score is: ", dicesum)
-
-		else:
-			turnscore += dicesum
-			turnOn = False
+		# elif choice == "b":
+		# 	turnscore += dicesum
+		# 	turnOn = False
 	return turnscore
 
 
@@ -64,4 +64,4 @@ def turn(choice):
 
 
 
-game(goalScore)
+game(goalScore, player)
