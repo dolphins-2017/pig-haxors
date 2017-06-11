@@ -1,4 +1,4 @@
-ffrom random import randint
+from random import randint
 
 
 goalScore = input("Please enter the score you would like to count up to: ")
