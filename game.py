@@ -4,16 +4,21 @@ from random import randint
 goalScore = input("Please enter the score you would like to count up to: ")
 player = player1
 
-def game(player):
+def game(goalScore, player):
 	if player == player1:
 		turnscore = turn(input("It's player 1's turn. Please type 'r' to roll or 'b' to bank: "))
 		p1totalScore += turnscore
+		if p1totalScore >= goalScore:
+			return ("Player 1 has won the game with a score of " + str(p1totalScore))
+		else:
+			return (game(goalScore, player2))
 	else:
 		turnscore = turn(input("It's player 2's turn. Please type 'r' to roll or 'b' to bank: "))
 		p2totalScore += turnscore
-
-
-	print(p1totalScore)
+		if p2totalScore >= goalScore:
+			return ("Player 2 has won the game with a score of " + str(p1totalScore))
+		else:
+			return (game(goalScore, player1))
 
 #after each roll prompt user to roll  or bank again
 def turn(choice):
